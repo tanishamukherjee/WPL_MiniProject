@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MovieDB - Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- HEADER -->
+    <div class="header">
+        <div class="logo" onclick="window.location.href='index.html'">🎬 MovieDB</div>
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Search movies, TV shows, and more...">
+            <button onclick="searchMovies()" class="btn btn-danger">Search</button>
+        </div>
+        <div class="auth-buttons">
+            <a href="login.html" class="btn btn-outline-light">Login/Register</a>
+        </div>
+    </div>
+
+    <!-- NAVIGATION MENU -->
+    <div class="nav-menu">
+        <a href="index.html" class="active">Home</a>
+        <a href="movies.html">Movies</a>
+        <a href="tv-shows.html">TV Shows</a>
+        <a href="my-list.html">My List</a>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="container">
+        <!-- Dynamic Poster for Recently Launched Movies -->
+        <div class="dynamic-poster">
+            <div id="recentMoviesPoster" class="slider"></div>
+        </div>
+
+        <!-- Featured Today -->
+        <div class="section">
+            <h2>Featured Today</h2>
+            <div id="featuredToday" class="slider"></div>
+            <button class="slider-button" onclick="slideLeft('featuredToday')">&#10094;</button>
+            <button class="slider-button" onclick="slideRight('featuredToday')">&#10095;</button>
+        </div>
+
+        <!-- Most Popular Celebrities -->
+        <div class="section">
+            <h2>Most Popular Celebrities</h2>
+            <div id="mostPopularCelebrities" class="slider"></div>
+            <button class="slider-button" onclick="slideLeft('mostPopularCelebrities')">&#10094;</button>
+            <button class="slider-button" onclick="slideRight('mostPopularCelebrities')">&#10095;</button>
+        </div>
+
+        <!-- What to Watch (Hindi) -->
+        <div class="section">
+            <h2>What to Watch (Hindi)</h2>
+            <div id="whatToWatch" class="slider"></div>
+            <button class="slider-button" onclick="slideLeft('whatToWatch')">&#10094;</button>
+            <button class="slider-button" onclick="slideRight('whatToWatch')">&#10095;</button>
+        </div>
+
+        <!-- Top 10 This Week -->
+        <div class="section">
+            <h2>Top 10 This Week</h2>
+            <div id="top10" class="slider"></div>
+            <button class="slider-button" onclick="slideLeft('top10')">&#10094;</button>
+            <button class="slider-button" onclick="slideRight('top10')">&#10095;</button>
+        </div>
+
+        <!-- Fan Favorites -->
+        <div class="section">
+            <h2>Fan Favorites</h2>
+            <div id="fanFavorites" class="slider"></div>
+            <button class="slider-button" onclick="slideLeft('fanFavorites')">&#10094;</button>
+            <button class="slider-button" onclick="slideRight('fanFavorites')">&#10095;</button>
+        </div>
+
+        <!-- Popular Interests -->
+        <div class="section">
+            <h2>Popular Interests</h2>
+            <div id="popularInterests" class="slider"></div>
+            <button class="slider-button" onclick="slideLeft('popularInterests')">&#10094;</button>
+            <button class="slider-button" onclick="slideRight('popularInterests')">&#10095;</button>
+        </div>
+    </div>
+
+    <!-- Add Slick Slider JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
