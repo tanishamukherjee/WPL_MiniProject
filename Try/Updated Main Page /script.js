@@ -101,7 +101,7 @@ async function fetchDetails(id, type) {
             <div class="error-message">
                 <h2>Error loading content</h2>
                 <p>There was an error loading the details. Please try again later.</p>
-                <button onclick="window.location.href='index.html'">Return Home</button>
+                <button onclick="window.location.href='home.html'">Return Home</button>
             </div>
         `;
     }
@@ -368,7 +368,7 @@ function startHeroSlider() {
 document.addEventListener('DOMContentLoaded', () => {
     const path = window.location.pathname.split('/').pop();
     
-    if (path === 'index.html' || path === '') {
+    if (path === 'home.html' || path === '') {
         initHomePage();
         startHeroSlider();
     } else if (path === 'movies.html') {
