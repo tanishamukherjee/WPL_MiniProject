@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MovieDB - Search</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body onload="checkAuth(); performSearch()" class="search-page">
+    <header class="header">
+        <div class="logo" onclick="window.location.href='home.html'">🎬 MovieDB</div>
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Search movies, TV shows...">
+            <button onclick="performSearch()"><i class="fas fa-search"></i></button>
+        </div>
+        <div class="auth-buttons">
+            <span id="user-info"></span>
+            <a href="#" id="authLink">Login/Register</a>
+        </div>
+    </header>
+
+    <nav class="nav-menu">
+        <a href="home.html"><i class="fas fa-home"></i> Home</a>
+        <a href="movies.html"><i class="fas fa-film"></i> Movies</a>
+        <a href="tv-shows.html"><i class="fas fa-tv"></i> TV Shows</a>
+        <a href="my-list.html"><i class="fas fa-list"></i> My List</a>
+    </nav>
+
+    <main class="search-container">
+        <h1>Search Results</h1>
+        <div class="search-options">
+            <button class="search-option active" onclick="setSearchType('multi')">All</button>
+            <button class="search-option" onclick="setSearchType('movie')">Movies</button>
+            <button class="search-option" onclick="setSearchType('tv')">TV Shows</button>
+        </div>
+        <div id="searchResults" class="search-results"></div>
+    </main>
+
+    <footer class="footer">
+        <!-- Keep existing footer -->
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Keep existing search page scripts
+    </script>
+</body>
+</html>
