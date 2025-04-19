@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MovieDB - View All</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .view-all-main {
+      padding: 140px 2rem 2rem;
+    }
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .section-header h2 {
+      color: #e50914;
+      font-size: 1.8rem;
+      margin: 0;
+    }
+    .vertical-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .vertical-item {
+      display: flex;
+      gap: 1rem;
+      background-color: #1c1c1c;
+      padding: 1rem;
+      border-radius: 10px;
+      color: white;
+      transition: transform 0.2s ease;
+    }
+    .vertical-item:hover {
+      transform: scale(1.01);
+    }
+    .vertical-item img {
+      width: 120px;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .vertical-item-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .vertical-item-content h4 {
+      margin: 0;
+      font-size: 1.2rem;
+    }
+    .vertical-item-content p {
+      margin: 0.3rem 0;
+      color: #ccc;
+    }
+    .item-description {
+      font-size: 0.9rem;
+      color: #bbb;
+      margin-top: 0.3rem;
+    }
+    .slider-item-buttons {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    .btn-more-info, .btn-list {
+      font-size: 0.85rem;
+      padding: 0.3rem 0.6rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .btn-more-info {
+      background-color: #e50914;
+      color: white;
+    }
+    .btn-list {
+      background-color: #333;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="logo" onclick="window.location.href='home.html'">🎬 MovieDB</div>
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Search movies, TV shows...">
+      <button onclick="searchMovies()"><i class="fas fa-search"></i></button>
+    </div>
+    <div class="auth-buttons">
+      <span id="user-info"></span>
+      <a href="#" id="authLink">Login/Register</a>
+    </div>
+  </header>
+
+  <!-- Navigation -->
+  <nav class="nav-menu">
+    <a href="home.html"><i class="fas fa-home"></i> Home</a>
+    <a href="movies.html"><i class="fas fa-film"></i> Movies</a>
+    <a href="tv-shows.html"><i class="fas fa-tv"></i> TV Shows</a>
+    <a href="my-list.html"><i class="fas fa-list"></i> My List</a>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="view-all-main">
+    <section class="section">
+      <div class="section-header">
+        <h2 id="viewAllTitle">View All</h2>
+        <div class="back-button" onclick="window.history.back()">
+          <i class="fas fa-arrow-left"></i> Back
+        </div>
+      </div>
+      <div id="viewAllSlider" class="vertical-list"></div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-links">
+        <a href="#" class="footer-link">About</a>
+        <a href="#" class="footer-link">Privacy Policy</a>
+        <a href="#" class="footer-link">Terms of Service</a>
+        <a href="#" class="footer-link">Contact Us</a>
+      </div>
+      <p class="footer-text">© 2023 MovieDB. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="script.js"></script>
+  <script>
+    function displayViewAllSlider(items, type) {
+      const slider = document.getElementById('viewAllSlider');
+      if (!slider) return;
+
+      slider.innerHTML = items.map(item => {
+        const title = item.title || item.name;
+        const year = new Date(item.release_date || item.first_air_date).getFullYear();
+        const overview = item.overview
+          ? item.overview.length > 200 ? item.overview.slice(0, 200) + '...' : item.overview
+          : 'No description available.';
+
+        return `
+          <div class="vertical-item">
+            <img src="${item.poster_path ? `${imageBaseUrl}w342${item.poster_path}` : 'https://via.placeholder.com/342x513?text=No+Poster'}"
+                 alt="${title}" 
+                 onclick="window.location.href='details.html?id=${item.id}&type=${type}'">
+            <div class="vertical-item-content">
+              <div>
+                <h4>${title}</h4>
+                <p>${year}</p>
+                <div class="item-description">${overview}</div>
+              </div>
+              <div class="slider-item-buttons">
+                <button class="btn-more-info" onclick="event.stopPropagation(); window.location.href='details.html?id=${item.id}&type=${type}'">
+                  <i class="fas fa-info-circle"></i> More Info
+                </button>
+                <button class="btn-list" data-id="${item.id}" onclick="event.stopPropagation(); toggleMyList(${item.id}, '${type}')">
+                  <i class="fas ${isInMyList(item.id) ? 'fa-check' : 'fa-plus'}"></i> ${isInMyList(item.id) ? 'In List' : 'Add to List'}
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const type = urlParams.get('type');
+      const category = urlParams.get('category');
+
+      if (type && category) {
+        const title = category.replace(/([A-Z])/g, ' $1').trim();
+        document.title = `MovieDB - ${title}`;
+        document.getElementById('viewAllTitle').textContent = title;
+
+        const endpoints = {
+          trending: `${baseUrl}/trending/${type}/week?api_key=${apiKey}`,
+          popularMovies: `${baseUrl}/movie/popular?api_key=${apiKey}`,
+          hindiMovies: `${baseUrl}/discover/movie?with_original_language=hi&api_key=${apiKey}`,
+          topRated: `${baseUrl}/${type}/top_rated?api_key=${apiKey}`,
+          hindiTV: `${baseUrl}/discover/tv?with_original_language=hi&api_key=${apiKey}`,
+          nowPlaying: `${baseUrl}/movie/now_playing?api_key=${apiKey}`,
+          upcoming: `${baseUrl}/movie/upcoming?api_key=${apiKey}`,
+          popularTV: `${baseUrl}/tv/popular?api_key=${apiKey}`,
+          topRatedTV: `${baseUrl}/tv/top_rated?api_key=${apiKey}`,
+          onAir: `${baseUrl}/tv/on_the_air?api_key=${apiKey}`,
+          trendingTV: `${baseUrl}/trending/tv/week?api_key=${apiKey}`
+        };
+
+        if (endpoints[category]) {
+          fetch(endpoints[category])
+            .then(response => response.json())
+            .then(data => displayViewAllSlider(data.results, type))
+            .catch(error => console.error('Error:', error));
+        }
+      }
+
+      updateListButtons();
+    });
+  </script>
+</body>
+</html>

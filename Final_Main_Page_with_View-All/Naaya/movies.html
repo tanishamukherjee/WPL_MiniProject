@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MovieDB - Movies</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body onload="checkAuth(); initMoviesPage()">
+    <header class="header">
+        <div class="logo" onclick="window.location.href='home.html'">🎬 MovieDB</div>
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Search movies...">
+            <button onclick="searchMovies()"><i class="fas fa-search"></i></button>
+        </div>
+        <div class="auth-buttons">
+            <span id="user-info"></span>
+            <a href="#" id="authLink">Login/Register</a>
+        </div>
+    </header>
+
+    <nav class="nav-menu">
+        <a href="home.html"><i class="fas fa-home"></i> Home</a>
+        <a href="movies.html" class="active"><i class="fas fa-film"></i> Movies</a>
+        <a href="tv-shows.html"><i class="fas fa-tv"></i> TV Shows</a>
+        <a href="my-list.html"><i class="fas fa-list"></i> My List</a>
+    </nav>
+
+    <main class="container">
+        <section class="section">
+            <h2>Now Playing</h2>
+            <div id="nowPlaying" class="slider"></div>
+        </section>
+
+        <section class="section">
+            <h2>Popular Movies</h2>
+            <div id="popularMovies" class="slider"></div>
+        </section>
+
+        <section class="section">
+            <h2>Popular Hindi Movies</h2>
+            <div id="hindiMovies" class="slider"></div>
+        </section>
+
+        <section class="section">
+            <h2>Top Rated</h2>
+            <div id="topRated" class="slider"></div>
+        </section>
+
+        <section class="section">
+            <h2>Upcoming</h2>
+            <div id="upcoming" class="slider"></div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#" class="footer-link">About</a>
+                <a href="#" class="footer-link">Privacy Policy</a>
+                <a href="#" class="footer-link">Terms of Service</a>
+                <a href="#" class="footer-link">Contact Us</a>
+            </div>
+            <p class="footer-text">© 2023 MovieDB. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        function checkAuth() {
+            const user = localStorage.getItem("loggedInUser");
+            const authLink = document.getElementById("authLink");
+            const userInfo = document.getElementById("user-info");
+            
+            if (user) {
+                userInfo.innerHTML = `👤 ${user}`;
+                authLink.textContent = "Logout";
+                authLink.href = "#";
+                authLink.onclick = () => {
+                    localStorage.removeItem("loggedInUser");
+                    window.location.reload();
+                };
+            } else {
+                authLink.href = "login.html";
+            }
+        }
+
+        function searchMovies() {
+            const query = document.getElementById("searchInput").value.trim();
+            if (query) {
+                window.location.href = `search.html?query=${encodeURIComponent(query)}`;
+            }
+        }
+    </script>
+</body>
+</html>
