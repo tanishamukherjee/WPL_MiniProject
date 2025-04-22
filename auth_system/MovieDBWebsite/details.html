@@ -8,53 +8,80 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
-<body onload="checkAuth(); loadDetails()">
+<body> <!-- Removed onload attribute -->
+    <!-- Header -->
     <header class="header">
         <div class="logo" onclick="window.location.href='home.html'">🎬 MovieDB</div>
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Search movies, TV shows...">
+            <button onclick="searchMovies()"><i class="fas fa-search"></i></button>
+        </div>
         <div class="auth-buttons">
             <span id="user-info"></span>
-            <a href="#" id="authLink">Login/Register</a>
+            <!-- Corrected link if user is not logged in -->
+            <a href="/auth_system/LoginRegistrationPage/index.html" id="authLink">Login/Register</a>
         </div>
     </header>
 
+    <!-- Navigation -->
+    <nav class="nav-menu">
+        <a href="home.html"><i class="fas fa-home"></i> Home</a>
+        <a href="movies.html"><i class="fas fa-film"></i> Movies</a>
+        <a href="tv-shows.html"><i class="fas fa-tv"></i> TV Shows</a>
+        <a href="my-list.html"><i class="fas fa-list"></i> My List</a>
+    </nav>
+
+    <!-- Main Content -->
     <main class="details-container">
         <div id="detailsHero" class="details-hero"></div>
         <div id="detailsContent" class="details-content"></div>
-        
+
+        <!-- Details Actions Section - Buttons added by script.js -->
+        <div class="details-actions">
+            <!-- Placeholder buttons below are optional, JS will overwrite -->
+            <!--
+            <button class="btn-play" id="playTrailerBtn">
+                <i class="fas fa-play"></i> Play Trailer
+            </button>
+            <button class="btn-list" id="addToListBtn">
+                <i class="fas fa-plus"></i> Add to List
+            </button>
+             -->
+        </div>
+
         <div class="cast-section">
-            <h2>Cast</h2>
+            <div class="section-header">
+                <h2>Cast</h2>
+                <button id="viewAllCast" class="view-all-btn" style="display: none;">View All</button> <!-- Hide initially -->
+            </div>
             <div id="castSlider" class="slider"></div>
+        </div>
+
+        <div class="recommendations-section">
+            <div class="section-header">
+                <h2>Recommendations</h2>
+                <button id="viewAllRecs" class="view-all-btn" style="display: none;">View All</button> <!-- Hide initially -->
+            </div>
+            <div id="recommendationsSlider" class="slider"></div>
         </div>
     </main>
 
-    <script src="script.js"></script>
-    <script>
-        function checkAuth() {
-            const user = localStorage.getItem("loggedInUser");
-            const authLink = document.getElementById("authLink");
-            const userInfo = document.getElementById("user-info");
-            
-            if (user) {
-                userInfo.innerHTML = `👤 ${user}`;
-                authLink.textContent = "Logout";
-                authLink.href = "#";
-                authLink.onclick = () => {
-                    localStorage.removeItem("loggedInUser");
-                    window.location.reload();
-                };
-            } else {
-                authLink.href = "login.html";
-            }
-        }
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#" class="footer-link">About</a>
+                <a href="#" class="footer-link">Privacy Policy</a>
+                <a href="#" class="footer-link">Terms of Service</a>
+                <a href="#" class="footer-link">Contact Us</a>
+            </div>
+            <p class="footer-text">© 2023 MovieDB. All rights reserved.</p>
+        </div>
+    </footer>
 
-        function loadDetails() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const id = urlParams.get('id');
-            const type = urlParams.get('type');
-            if (id && type) {
-                fetchDetails(id, type);
-            }
-        }
-    </script>
+    <!-- Scripts -->
+    <script src="script.js"></script>
+    <!-- Inline script removed as DOMContentLoaded in script.js handles initialization -->
+    <!-- Make sure loadDetails is called within script.js initialization if needed -->
 </body>
 </html>

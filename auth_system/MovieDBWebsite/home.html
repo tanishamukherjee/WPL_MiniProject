@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
-<body onload="checkAuth(); initHomePage()">
+<body> <!-- Removed onload attribute -->
     <!-- Header -->
     <header class="header">
         <div class="logo" onclick="window.location.href='home.html'">🎬 MovieDB</div>
@@ -18,7 +18,8 @@
         </div>
         <div class="auth-buttons">
             <span id="user-info"></span>
-            <a href="#" id="authLink">Login/Register</a>
+            <!-- Corrected link if user is not logged in -->
+            <a href="/auth_system/LoginRegistrationPage/index.html" id="authLink">Login/Register</a>
         </div>
     </header>
 
@@ -27,7 +28,7 @@
         <a href="home.html" class="active"><i class="fas fa-home"></i> Home</a>
         <a href="movies.html"><i class="fas fa-film"></i> Movies</a>
         <a href="tv-shows.html"><i class="fas fa-tv"></i> TV Shows</a>
-        <a href="#"><i class="fas fa-list"></i> My List</a>
+        <a href="my-list.html"><i class="fas fa-list"></i> My List</a>
     </nav>
 
     <!-- Hero Section -->
@@ -53,69 +54,35 @@
         </section>
 
         <section class="section">
-            <h2>Top Rated</h2>
-            <div id="topRated" class="slider"></div>
+            <h2>Popular Hindi Movies</h2>
+            <div id="hindiMovies" class="slider"></div>
         </section>
 
         <section class="section">
-            <h2>Now Playing</h2>
-            <div id="nowPlaying" class="slider"></div>
+            <h2>Top Rated Movies</h2> <!-- Changed from just Top Rated for clarity -->
+            <div id="topRated" class="slider"></div> <!-- Used by fetchTopRated('movie') -->
+        </section>
+
+        <section class="section">
+            <h2>Popular Hindi TV Shows</h2>
+            <div id="hindiTV" class="slider"></div>
         </section>
     </main>
 
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#" class="footer-link">About</a>
+                <a href="#" class="footer-link">Privacy Policy</a>
+                <a href="#" class="footer-link">Terms of Service</a>
+                <a href="#" class="footer-link">Contact Us</a>
+            </div>
+            <p class="footer-text">© 2023 MovieDB. All rights reserved.</p>
+        </div>
+    </footer>
+
     <script src="script.js"></script>
-    <script>
-        function checkAuth() {
-            const user = localStorage.getItem("loggedInUser");
-            const authLink = document.getElementById("authLink");
-            const userInfo = document.getElementById("user-info");
-            
-            if (user) {
-                userInfo.innerHTML = `👤 ${user}`;
-                authLink.textContent = "Logout";
-                authLink.href = "#";
-                authLink.onclick = () => {
-                    localStorage.removeItem("loggedInUser");
-                    window.location.reload();
-                };
-            } else {
-                authLink.href = "login.html";
-            }
-        }
-
-        function searchMovies() {
-            const query = document.getElementById("searchInput").value.trim();
-            if (query) {
-                window.location.href = `search.html?query=${encodeURIComponent(query)}`;
-            }
-        }
-
-        let currentHeroSlide = 0;
-        function slideHero(direction) {
-            const slider = document.querySelector('.hero-slider');
-            const slides = document.querySelectorAll('.hero-slide');
-            currentHeroSlide = (currentHeroSlide + direction + slides.length) % slides.length;
-            slider.style.transform = `translateX(-${currentHeroSlide * 100}%)`;
-            updateHeroIndicators();
-        }
-
-        function updateHeroIndicators() {
-            const indicators = document.getElementById('heroIndicators');
-            if (!indicators) return;
-            
-            const slides = document.querySelectorAll('.hero-slide');
-            indicators.innerHTML = Array.from(slides).map((_, index) => 
-                `<span class="${index === currentHeroSlide ? 'active' : ''}" 
-                      onclick="goToHeroSlide(${index})"></span>`
-            ).join('');
-        }
-
-        function goToHeroSlide(index) {
-            currentHeroSlide = index;
-            const slider = document.getElementById('heroSlider');
-            slider.style.transform = `translateX(-${currentHeroSlide * 100}%)`;
-            updateHeroIndicators();
-        }
-    </script>
+    <!-- Inline script removed -->
 </body>
 </html>

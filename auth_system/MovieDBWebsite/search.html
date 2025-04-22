@@ -8,84 +8,57 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
-<body onload="checkAuth(); performSearch()">
+<!-- Removed onload, performSearch is called from script.js DOMContentLoaded -->
+<body class="search-page">
     <header class="header">
         <div class="logo" onclick="window.location.href='home.html'">🎬 MovieDB</div>
         <div class="search-bar">
-            <form onsubmit="event.preventDefault(); performSearch();">
-                <input type="text" id="searchInput" placeholder="Search movies, TV shows..." value="">
-                <button type="submit"><i class="fas fa-search"></i></button>
-            </form>
+            <!-- Input value will be set by performSearch in script.js -->
+            <input type="text" id="searchInput" placeholder="Search movies, TV shows...">
+             <!-- Button now triggers performSearch which reads input & params -->
+            <button onclick="performSearch()"><i class="fas fa-search"></i></button>
         </div>
         <div class="auth-buttons">
             <span id="user-info"></span>
-            <a href="#" id="authLink">Login/Register</a>
+             <!-- Corrected link if user is not logged in -->
+            <a href="/auth_system/LoginRegistrationPage/index.html" id="authLink">Login/Register</a>
         </div>
     </header>
+
+    <nav class="nav-menu">
+        <a href="home.html"><i class="fas fa-home"></i> Home</a>
+        <a href="movies.html"><i class="fas fa-film"></i> Movies</a>
+        <a href="tv-shows.html"><i class="fas fa-tv"></i> TV Shows</a>
+        <a href="my-list.html"><i class="fas fa-list"></i> My List</a>
+    </nav>
 
     <main class="search-container">
         <h1>Search Results</h1>
         <div class="search-options">
-            <button class="search-option active" onclick="setSearchType('multi')">All</button>
+            <!-- Active class will be set by performSearch in script.js -->
+            <button class="search-option" onclick="setSearchType('multi')">All</button>
             <button class="search-option" onclick="setSearchType('movie')">Movies</button>
             <button class="search-option" onclick="setSearchType('tv')">TV Shows</button>
         </div>
-        <div id="searchResults" class="search-results"></div>
+        <div id="searchResults" class="search-results">
+             <!-- Results will be loaded here by searchContent function -->
+        </div>
     </main>
 
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#" class="footer-link">About</a>
+                <a href="#" class="footer-link">Privacy Policy</a>
+                <a href="#" class="footer-link">Terms of Service</a>
+                <a href="#" class="footer-link">Contact Us</a>
+            </div>
+            <p class="footer-text">© 2023 MovieDB. All rights reserved.</p>
+        </div>
+    </footer>
+
     <script src="script.js"></script>
-    <script>
-        let currentSearchType = 'multi';
-        
-        function checkAuth() {
-            const user = localStorage.getItem("loggedInUser");
-            const authLink = document.getElementById("authLink");
-            const userInfo = document.getElementById("user-info");
-            
-            if (user) {
-                userInfo.innerHTML = `👤 ${user}`;
-                authLink.textContent = "Logout";
-                authLink.href = "#";
-                authLink.onclick = () => {
-                    localStorage.removeItem("loggedInUser");
-                    window.location.reload();
-                };
-            } else {
-                authLink.href = "login.html";
-            }
-        }
-
-        function setSearchType(type) {
-            currentSearchType = type;
-            document.querySelectorAll('.search-option').forEach(btn => {
-                btn.classList.toggle('active', btn.textContent.toLowerCase() === type || 
-                    (type === 'multi' && btn.textContent === 'All'));
-            });
-            performSearch();
-        }
-
-        function performSearch() {
-            const query = document.getElementById("searchInput").value.trim();
-            const urlParams = new URLSearchParams(window.location.search);
-            const urlQuery = urlParams.get('query');
-            
-            // Use input value if available, otherwise use URL parameter
-            const searchQuery = query || urlQuery || '';
-            
-            if (searchQuery) {
-                // Update URL without reload
-                history.pushState(null, '', `search.html?query=${encodeURIComponent(searchQuery)}&type=${currentSearchType}`);
-                document.getElementById("searchInput").value = searchQuery;
-                searchContent(searchQuery, currentSearchType);
-            } else {
-                document.getElementById('searchResults').innerHTML = `
-                    <div class="no-results">
-                        <i class="fas fa-search"></i>
-                        <h3>Enter a search term to find movies and TV shows</h3>
-                    </div>
-                `;
-            }
-        }
-    </script>
+    <!-- Inline script removed, core logic in script.js -->
+    <!-- Ensure performSearch() and setSearchType() exist in script.js -->
 </body>
 </html>
