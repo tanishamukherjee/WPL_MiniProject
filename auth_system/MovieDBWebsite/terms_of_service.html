@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MovieDB - Terms of Service</title>
+    <!-- CSS Links -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+     <!-- Styles for static content pages (Copied from updated privacy_policy.html) -->
+     <style>
+        .static-content-container {
+            padding: 140px 3rem 3rem; /* Increased horizontal padding */
+            max-width: 1200px; /* Increased max-width from 900px */
+            margin: 0 auto;
+            background-color: #181818;
+            border-radius: 8px;
+            margin-bottom: 3rem; /* Increased bottom margin */
+            color: #ccc; /* Default text color for container */
+        }
+        .static-content-container h1 {
+            color: #e50914;
+            margin-bottom: 2rem; /* Increased spacing */
+            border-bottom: 1px solid #444; /* Slightly lighter border */
+            padding-bottom: 1rem; /* Increased padding */
+            font-size: 2.5rem; /* Larger title */
+        }
+        .static-content-container h2 {
+            color: #f0f0f0; /* Brighter heading */
+            margin-top: 2.5rem;
+            margin-bottom: 1.2rem;
+            font-size: 1.6rem; /* Slightly larger subheading */
+             border-bottom: 1px solid #333; /* Subtle separator */
+             padding-bottom: 0.4rem;
+        }
+        /* Added h3 styling for consistency if needed later */
+        .static-content-container h3 {
+            color: #e0e0e0;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+        .static-content-container p, .static-content-container li {
+            color: #d0d0d0; /* Slightly brighter paragraph text */
+            line-height: 1.75; /* Increased line spacing */
+            font-size: 1.05rem; /* Slightly larger text */
+            margin-bottom: 1.2rem; /* Spacing between paragraphs/list items */
+        }
+        .static-content-container ul {
+            padding-left: 25px; /* More indent */
+            margin-bottom: 1.5rem;
+            list-style: disc;
+        }
+         .static-content-container li::marker { /* Style list bullets */
+            color: #e50914;
+         }
+        .static-content-container strong {
+            color: #ffffff; /* Pure white for emphasis */
+            font-weight: 600; /* Slightly bolder */
+        }
+        .terms-update-date { /* Renamed class */
+            font-style: italic;
+            color: #999; /* Slightly lighter grey */
+            font-size: 0.95rem;
+            margin-bottom: 2.5rem;
+            display: block; /* Ensure it's on its own line */
+        }
+        .disclaimer {
+            margin-top: 3rem;
+            padding: 1.5rem;
+            background-color: #282828; /* Darker background */
+            border-left: 5px solid #e50914;
+            color: #ccc;
+            font-size: 0.95rem;
+            border-radius: 4px;
+        }
+        .disclaimer strong {
+            color: #eee;
+        }
+        /* Link styling within content */
+         .static-content-container a {
+             color: #e50914;
+             text-decoration: none;
+             transition: color 0.2s ease;
+         }
+          .static-content-container a:hover {
+             color: #ff1f2e;
+             text-decoration: underline;
+         }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo" onclick="window.location.href='home.html'">🎬 MovieDB</div>
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Search movies, TV shows...">
+            <button onclick="searchMovies()"><i class="fas fa-search"></i></button>
+        </div>
+        <div class="auth-buttons">
+            <span id="user-info"></span>
+            <a href="/auth_system/LoginRegistrationPage/index.html" id="authLink">Login/Register</a>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="nav-menu">
+        <a href="home.html"><i class="fas fa-home"></i> Home</a>
+        <a href="movies.html"><i class="fas fa-film"></i> Movies</a>
+        <a href="tv-shows.html"><i class="fas fa-tv"></i> TV Shows</a>
+        <a href="my-list.html"><i class="fas fa-list"></i> My List</a>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="static-content-container">
+         <h1>Terms of Service</h1>
+         
+         <p>Welcome to MovieDB! These Terms of Service ("Terms") govern your access to and use of the MovieDB website and services (collectively, the "Service") provided by MovieDB ("we," "us," or "our").</p>
+         <p><strong>Please read these Terms carefully. By accessing or using the Service, you agree to be bound by these Terms. If you do not agree to these Terms, you may not access or use the Service.</strong></p>
+
+         <h2>1. Acceptance of Terms</h2>
+         <p>By creating an account or using the Service, you affirm that you are at least 13 years old (or the applicable minimum age required in your jurisdiction to use online services without parental consent) and are fully able and competent to enter into the terms, conditions, obligations, affirmations, representations, and warranties set forth in these Terms, and to abide by and comply with these Terms.</p>
+
+
+         <h2>2. User Accounts</h2>
+         <p>Creating an account allows you to utilize features like the "My List". You agree that the information you provide during registration is accurate, current, and complete. You agree to update your information as necessary to maintain its accuracy.</p>
+         <p>We reserve the right to suspend or terminate your account without notice if activities occur on your account which, in our sole discretion, would or might constitute a violation of these Terms, or an infringement or violation of the rights of any third party, or of any applicable laws or regulations.</p>
+
+         <h2>3. Content and Data Source</h2>
+         <ul>
+            <li>TMDb Data: The core movie, TV show, cast, crew, images, ratings, and related metadata available through the Service is sourced from The Movie Database (TMDb) API. This data is provided for informational purposes. While TMDb strives for accuracy, we do not guarantee the accuracy, completeness, or timeliness of this third-party data. MovieDB is not endorsed or certified by TMDb. You must adhere to TMDb's own terms of use regarding their data if you use it outside of this Service.</li>
+            <li>User List Data: Information you explicitly add to your "My List" (item ID, type, title, poster path) is stored in our database associated with your user ID for the purpose of providing this feature to you.</li>
+         </ul>
+
+         <h2>4. Intellectual Property Rights</h2>
+         <p>Excluding the data sourced from TMDb, the Service and its original content, features, and functionality are and will remain the exclusive property of MovieDB and its licensors. The Service is protected by copyright, trademark, and other laws of India and foreign countries. Our trademarks and trade dress may not be used in connection with any product or service without our prior written consent.</p>
+
+         <h2>5. Limitation of Liability</h2>
+         <p>IN NO EVENT SHALL MOVIEDB, NOR ITS DIRECTORS, EMPLOYEES, PARTNERS, AGENTS, SUPPLIERS, OR AFFILIATES, BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL OR PUNITIVE DAMAGES, INCLUDING WITHOUT LIMITATION, LOSS OF PROFITS, DATA, USE, GOODWILL, OR OTHER INTANGIBLE LOSSES, RESULTING FROM (i) YOUR ACCESS TO OR USE OF OR INABILITY TO ACCESS OR USE THE SERVICE; (ii) ANY CONDUCT OR CONTENT OF ANY THIRD PARTY ON THE SERVICE; (iii) ANY CONTENT OBTAINED FROM THE SERVICE (INCLUDING TMDb DATA); AND (iv) UNAUTHORIZED ACCESS, USE OR ALTERATION OF YOUR TRANSMISSIONS OR CONTENT, WHETHER BASED ON WARRANTY, CONTRACT, TORT (INCLUDING NEGLIGENCE) OR ANY OTHER LEGAL THEORY, WHETHER OR NOT WE HAVE BEEN INFORMED OF THE POSSIBILITY OF SUCH DAMAGE, AND EVEN IF A REMEDY SET FORTH HEREIN IS FOUND TO HAVE FAILED OF ITS ESSENTIAL PURPOSE.</p>
+
+         <h2>6. Contact Us</h2>
+         <p>If you have any questions about these Terms, please contact us:</p>
+         <ul>
+             <li>By visiting our Contact page: <a href="contact_us.html">Contact Us</a></li>
+             <li>By email: <a href="mailto:mukherjee.t@somaiya.edu">mukherjee.t@somaiya.edu</a></li>
+         </ul>
+
+    </main>
+
+    <!-- Footer -->
+     <footer class="footer">
+         <div class="footer-content">
+            <div class="footer-links">
+                 <a href="about.html" class="footer-link">About</a>
+                 <a href="privacy_policy.html" class="footer-link">Privacy Policy</a>
+                 <a href="terms_of_service.html" class="footer-link">Terms of Service</a>
+                 <a href="contact_us.html" class="footer-link">Contact Us</a>
+            </div>
+            <p class="footer-text">© 2025 MovieDB. All rights reserved.</p> 
+        </div>
+    </footer>
+
+    <!-- Script for Auth Check (Header functionality) -->
+    <script src="script.js"></script>
+</body>
+</html>
